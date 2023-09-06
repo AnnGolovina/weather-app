@@ -24,7 +24,3 @@ const [value, setValue] = useState("");
     </div>
   );
 }
-
-
-
-

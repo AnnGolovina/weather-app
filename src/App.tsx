@@ -7,8 +7,9 @@ function App() {
   return (
     <div>
       <h1>Welcome to the Weather App</h1>
-      <SearchContextProvider>
-        <WeatherCard data={[]} />
+      <SearchContextProvider> 
+        <WeatherCard data={[]} />        
+       
       
       </SearchContextProvider>
     </div>

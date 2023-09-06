@@ -1,6 +1,6 @@
 import React, { Dispatch, FC, PropsWithChildren, useState } from 'react'
 import { WeatherLocation } from '../components/types'
-import { createContext } from 'vm';
+import { createContext } from 'react';
 import { useFetchData } from '../hooks/useFetchData';
 
 interface SearchContextInterface {
@@ -13,7 +13,7 @@ interface SearchContextInterface {
 
 }
 
-export const SearchContext = createContext();
+export const SearchContext = createContext<SearchContextInterface | null>(null);
 
 
 export const SearchContextProvider: FC<PropsWithChildren> = ({children}) => {
