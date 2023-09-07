@@ -1,26 +1,23 @@
-import React, { useMemo, useState } from 'react';
-import { useFetchData } from '../../hooks/useFetchData';
-import { WeatherLocation } from '../types';
+import { SearchContext } from "../../context/SearchContext";
+import { CurrentWeather, WeatherLocation } from "../types";
 
-export const WeatherCard = ({data}: { data: WeatherLocation[] }) => {
+interface PropsInterface {
+  location: WeatherLocation | null,
+  currentWeather: CurrentWeather | null,
+}
 
-const [value, setValue] = useState("");
+import React, { FC, useContext, useMemo } from 'react'
 
-  const options = useMemo(() => ({method: "GET", 
-  headers: {
-		'X-RapidAPI-Key': '417a5eb3d1mshed972e378934e9ap106f51jsn2f50fcd2d0fc',
-		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-	}}), []);
+export const WeatherCard: FC<PropsInterface> = ({location,currentWeather}) => {
 
-  const result = useFetchData(
-    'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13',
-    options
-  )
+  const options = useMemo(() => ({method:"GET"}), []);
+
+  if(!location && !currentWeather) return null;
   
   return (
     <div>
-      <input placeholder='Enter the city' value={value} />
-      <button>Search</button>
+      <h3>{location?.country}</h3>
+      <h4>{currentWeather?.temp_c}</h4>
     </div>
-  );
+  )
 }

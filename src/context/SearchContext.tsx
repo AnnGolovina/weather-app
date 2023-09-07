@@ -1,39 +1,29 @@
 import React, { Dispatch, FC, PropsWithChildren, useState } from 'react'
-import { WeatherLocation } from '../components/types'
+import { CurrentWeather, WeatherLocation } from '../components/types'
 import { createContext } from 'react';
-import { useFetchData } from '../hooks/useFetchData';
 
 interface SearchContextInterface {
-	location: WeatherLocation[];
+	weather: CurrentWeather | null;
+	setWeather: Dispatch<CurrentWeather | null>;
 
 	value: string;
-	setValue: Dispatch<string>;
+	setValue:Dispatch<string>;
 
-	locationSearchResult: WeatherLocation[];
-
+	location: WeatherLocation | null;
+	setLocation: Dispatch<WeatherLocation | null>;
 }
 
 export const SearchContext = createContext<SearchContextInterface | null>(null);
 
 
 export const SearchContextProvider: FC<PropsWithChildren> = ({children}) => {
+	const [weather, setWeather] = useState<CurrentWeather | null>(null);
 	const [value, setValue] = useState<string>("");
-
-	const {data: location} = useFetchData<WeatherLocation[]>(
-		'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13'
-	)
-
-	const locationSearchResult =  location ? location.filter(({ name }) => name.includes(value)) : [];
+	const [location, setLocation] = useState<WeatherLocation | null>(null);
 
   return (
 	<SearchContext.Provider
-	value={{
-	  location: location || [],
-	  value,
-	  setValue,
-	  locationSearchResult,
-	}}
-  >
+	value={{weather, setWeather, value, setValue, location, setLocation}}>
 	{children}
   </SearchContext.Provider>
   )

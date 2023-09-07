@@ -1,33 +1,35 @@
-import React, { FC, useCallback, useContext } from 'react'
-import { FlexRow } from './Flex';
-import { SearchContext } from '../../context/SearchContext';
+import React, { FC, useCallback, useContext } from "react";
+import { FlexRow } from "./Flex";
+import { SearchContext } from "../../context/SearchContext";
+import { useFetchData } from "../../hooks/useFetchData";
+import {options} from "../shared/api.config"
 
-//export type HTMLInputEvent = { target: { value: string, name: string } };
+export type HTMLInputEvent = {target: {value: string, name: string}};
 
+interface PropsInterface {}
 
-//interface PropsInterface {
+export const Search: FC<PropsInterface> = () => {
+  const { value, setValue, weather, setWeather } = useContext(SearchContext)!;
+  
+  const getData = useFetchData(
+  `https://weatherapi-com.p.rapidapi.com/current.json?q=${value}`,
+    options,
+    false
+  ) as () => Promise<any>;
 
-//}
+  const onButtonClick = () => {
+    getData().then((data) => setWeather(data));
+  };
 
-//export const Search: FC<PropsInterface> = () => {
-//  const { value, setValue } = useContext(SearchContext)!;
-
-//	console.log(value, "Render");
-
-//	//const onChange = useCallback((event: HTMLInputEvent) => {
-//	//	setValue(event.target.value);
-//	//}, []);
-
-//	const onClear = useCallback(() => {
-//		setValue("")
-//	}, []);
-
-//  return (
-//	<FlexRow >
-//		<input value={value} placeholder='Search' type="text" />
-//		<span onClick={onClear} style={{ cursor: 'pointer' }}>
-               
-//            </span>
-//	</FlexRow>
-//  )
-//}
+  return (
+    <FlexRow>
+      <input
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
+        placeholder="Search location..."
+        type="text"
+      />
+      <button onClick={() => onButtonClick()}>Search</button>
+    </FlexRow>
+  );
+};
