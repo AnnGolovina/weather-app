@@ -8,31 +8,60 @@ interface PropsInterface {
 }
 
 export const WeatherList: FC<PropsInterface> = ({weather}) => {
-  const contextWeather = useContext(SearchContext)!;
+  
   
 const options = useMemo(() => ({method:"GET"}), []);
 
+ 
 const renderWeatherList = () => {
-  const result = contextWeather.weather?.forecast.forecastday.map((d) => {
+  if (!weather || !weather.forecast.forecastday) return null;
+
+
+  const astroElements = weather.forecast.forecastday.map((d) => {
     console.log(d, "DAY");
 
-    for (let info in d.astro) {
-      console.log(info, d.astro, "day item");
-      return `<h1>${info}: ${d.astro.date}</h1>`      
-    }
-
-    console.log(result, "result");
-    
-    
-  })
-}
-renderWeatherList()
-
-  if(!weather) return null; 
   
-  return (
-	<div>
+    return (
+      <div key={d.date}> 
+        <div>Date: {d.date}</div>
+        <div>Sunrise: {d.astro.sunrise}</div>
+        <div>Sunset: {d.astro.sunset}</div>
+        <div> Max.t: {d.day.maxtemp_c}</div>
+
+
+      </div>
+    );
+  });
+
+  return astroElements;
+}
+
+
+
+
+
+
+
+
+
+  
+//  const astroElements = weather.forecast.forecastday.map((d) => {
+//    console.log(d, "DAY");
     
+//    for (let info in d.astro.date) {
+//      console.log(info, d.astro, "day item");
+
+//      return (`<div>${info}: ${d.astro.date[info]}</div>`);
+//    }
+
+//  });
+  
+//  return astroElements;
+//}
+
+return (
+  <div>
+    {renderWeatherList()}
   </div>
-  )
+);
 }

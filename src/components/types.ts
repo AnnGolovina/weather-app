@@ -11,8 +11,11 @@ export interface WeatherLocation {
 }
 
 export interface CurrentWeather {
-	last_updated:string,
 	temp_c: string,
+	wind_kph: string,
+	pressure_mb:string,
+	feelslike_c:string,
+	vis_km:string,
 	condition: WeatherCondition,
 
 }
@@ -20,9 +23,6 @@ export interface CurrentWeather {
 export interface WeatherCondition {
 	text: string,
 	icon: string,
-	pressure_mb:string,
-	feelslike_c:string,
-	vis_km:string,
 }
 
 export interface ForecastWeather {
@@ -31,17 +31,31 @@ export interface ForecastWeather {
 
 export interface WeatherDaysData {
 	astro: AstroData;
-	conditions: ConditionsData;
+	date: string;
+	//conditions: ConditionsData;
+	day: WeatherOnDay;
   }
   
-  export interface AstroData {
-	date: string;
+  export interface AstroData {	
 	sunrise: string;
 	sunset: string;
   }
-  
-  export interface ConditionsData {
+
+  export interface WeatherOnDay {
+	avgtemp_c: string;
+	avgvis_km: string;
+	conditions: ConditionsDataOnDay;
 	maxtemp_c: string;
+	mintemp_c: string;
+	maxwind_kph: string;
+  }
+  
+  export interface ConditionsDataOnDay {
+	icon: string;
+	text: string;
+  }
+  export interface ConditionsData {
+	maxtemp_c: any;
 	mintemp_c: string;
 	maxwind_kph: string;
   }
