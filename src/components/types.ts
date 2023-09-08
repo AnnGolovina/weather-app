@@ -1,6 +1,7 @@
 export interface WeatherData {
 	location: WeatherLocation,
 	current: CurrentWeather,
+	forecast: ForecastWeather,
 }
 
 
@@ -21,5 +22,30 @@ export interface WeatherCondition {
 	icon: string,
 	pressure_mb:string,
 	feelslike_c:string,
-	vis_km:string
+	vis_km:string,
 }
+
+export interface ForecastWeather {
+	forecastday: WeatherDaysData[],
+}
+
+export interface WeatherDaysData {
+	astro: AstroData;
+	conditions: ConditionsData;
+  }
+  
+  export interface AstroData {
+	date: string;
+	sunrise: string;
+	sunset: string;
+  }
+  
+  export interface ConditionsData {
+	maxtemp_c: string;
+	mintemp_c: string;
+	maxwind_kph: string;
+  }
+  
+  
+  
+  

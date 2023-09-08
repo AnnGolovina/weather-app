@@ -18,6 +18,7 @@ export const WeatherCard: FC<PropsInterface> = ({weather}) => {
       <h3>{weather.location.name}</h3>
       <h2>{weather.current.temp_c}</h2>
       
+      
     </div>
   )
 }

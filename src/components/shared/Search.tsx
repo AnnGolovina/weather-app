@@ -13,10 +13,10 @@ export const Search: FC<PropsInterface> = () => {
   const { value, setValue, weather, setWeather } = useContext(SearchContext)!;
   
   const getData = useFetchData(
-  `https://weatherapi-com.p.rapidapi.com/current.json?q=${value}`,
+    `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${value}&days=3`,
     options,
     false
-  ) as () => Promise<any>;
+  ) as () => Promise<WeatherData>;
 
   const onButtonClick = () => {
     getData().then((data) => setWeather(data));

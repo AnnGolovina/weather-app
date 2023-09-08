@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-import { WeatherCard } from './components/static/WeatherCard';
 import { SearchContextProvider } from './context/SearchContext';
-import { Search } from './components/shared/Search';
 import { Weather } from './components/static/Weather';
+import { WeatherList } from './components/static/WeatherList';
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <h1>Welcome to the Weather App</h1>
       <SearchContextProvider> 
           <Weather />
+          <WeatherList weather={null} />
       </SearchContextProvider>
     </div>
   );
