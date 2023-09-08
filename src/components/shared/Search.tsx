@@ -1,8 +1,9 @@
-import React, { FC, useCallback, useContext } from "react";
+import React, { FC, useContext } from "react";
 import { FlexRow } from "./Flex";
 import { SearchContext } from "../../context/SearchContext";
 import { useFetchData } from "../../hooks/useFetchData";
 import {options} from "../shared/api.config"
+import { CurrentWeather, WeatherData } from "../types";
 
 export type HTMLInputEvent = {target: {value: string, name: string}};
 

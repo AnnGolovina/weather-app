@@ -1,3 +1,9 @@
+export interface WeatherData {
+	location: WeatherLocation,
+	current: CurrentWeather,
+}
+
+
 export interface WeatherLocation {
 		name: string, 
 		country: string
