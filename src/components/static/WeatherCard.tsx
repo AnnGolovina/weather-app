@@ -1,8 +1,16 @@
-import { SearchContext } from "../../context/SearchContext";
-import { CurrentWeather, WeatherData, WeatherLocation } from "../types";
+import {  WeatherData} from "../types";
 import React, { FC, useMemo } from 'react'
 import {IoMdSunny, IoMdCloudy,IoIosPartlySunny } from "react-icons/io"
 import {BsCloudFog2Fill} from "react-icons/bs"
+import {FaTemperatureHigh} from "react-icons/fa"
+import {PiWindLight} from "react-icons/pi"
+import {BsDropletHalf} from "react-icons/bs"
+import {BiDownArrow} from "react-icons/bi"
+import {GoSun} from "react-icons/go"
+import {IoCloudySharp} from "react-icons/io5"
+import {RiDrizzleFill} from "react-icons/ri"
+import {BsFillCloudLightningRainFill} from "react-icons/bs"
+import { FlexColumn, FlexRow } from "../shared/Flex";
 
 interface PropsInterface {
   weather: WeatherData | null,
@@ -16,17 +24,26 @@ export const WeatherCard: FC<PropsInterface> = ({weather}) => {
 
   switch (weather?.current.condition.text) {
     case "Sunny":
-      weatherIcon = <IoMdSunny style={{ fontSize: '36px' }} />;
+      weatherIcon = <IoMdSunny/>;
       break;
     case "Cloudy":
-      weatherIcon = <IoMdCloudy style={{ fontSize: '36px' }} />;
+      weatherIcon = <IoMdCloudy/>;
       break;
     case "Fog":
-      weatherIcon = <BsCloudFog2Fill style={{ fontSize: '36px' }} />;
+      weatherIcon = <BsCloudFog2Fill/>;
       break;
     case "Partly cloudy":
-      weatherIcon = <IoIosPartlySunny style={{ fontSize: '36px' }}/>;
-      break
+      weatherIcon = <IoIosPartlySunny/>;
+      break;
+    case "Overcast":
+      weatherIcon = <IoCloudySharp/>;
+      break;
+    case "Light drizzle" && "Light rain shower":
+      weatherIcon = <RiDrizzleFill/>;
+      break;
+    case "Moderate or heavy rain with thunder":
+      weatherIcon = <BsFillCloudLightningRainFill/>;
+      break;
     default:
       weatherIcon = null;
   }
@@ -36,24 +53,51 @@ export const WeatherCard: FC<PropsInterface> = ({weather}) => {
   return (
     <div className="weather-card">
     <div className="weather-card-loc">
+
       <div>
-        <h2>{weather.location.name}</h2>
-        <h3>Temperature: {weather.current.temp_c}</h3> 
-        <h3>Feels like {weather.current.feelslike_c}</h3> 
+        <h2>{weather.location.name}</h2> 
+
+          <FlexColumn alignItems="stretch">
+          <h3><FaTemperatureHigh /> {weather.current.temp_c}C</h3> 
+          <h5>Feels like {weather.current.feelslike_c}C</h5> 
+          </FlexColumn>
+
       </div>
-      <div> 
+
+      <FlexColumn alignItems="center" justifyContent="center"> 
         <h4>{weatherIcon}</h4>
-
-
-        <h4>{weather.current.condition.text}</h4>
-      </div>
-      
+        <h3 className="weather-text">{weather.current.condition.text}</h3>
+      </FlexColumn>      
          
     </div>
-    <div className="weather-card-current">
-      <h3>{weather.current.wind_kph}</h3>
-      <h3>{weather.current.pressure_mb}</h3>
-    </div>
+
+    <FlexRow className="weather-card-current" justifyContent="space-between" margin="40px 0 0 0">
+    
+      <FlexColumn>
+        <FlexColumn>
+          <h3>Wind <PiWindLight /></h3>
+          <p>{weather.current.wind_kph}km/h</p>
+        </FlexColumn>
+        <FlexColumn margin="25px 0 0">
+          <h3>Pressure <BiDownArrow/></h3>
+          <p>{weather.current.pressure_mb} Pa</p>
+        </FlexColumn>
+      
+      
+      </FlexColumn>
+
+      <FlexColumn>
+          <FlexColumn >
+        <h3>Humidity < BsDropletHalf style={{fontSize: '15px'}}/></h3>
+        <p>{weather.current.humidity}%</p>
+          </FlexColumn>
+          <FlexColumn margin="25px 0 0">
+        <h3>UV index <GoSun/></h3>
+        <p>{weather.current.uv}</p>
+          </FlexColumn>
+      </FlexColumn>
+    </FlexRow>
+
 
     </div>
   )

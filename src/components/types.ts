@@ -16,6 +16,8 @@ export interface CurrentWeather {
 	pressure_mb:string,
 	feelslike_c:string,
 	vis_km:string,
+	humidity: string,
+	uv: string,
 	condition: WeatherCondition,
 
 }

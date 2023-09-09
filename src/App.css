@@ -1,7 +1,7 @@
 h1 {
 	margin: 5px;
 	text-align: center;
-	font-size: 40px;
+	font-size: 60px;
 	color: #f3f3fc;
 	text-transform: uppercase;
 }
@@ -52,6 +52,65 @@ h1 {
 }
 
 .weather-card-loc {
-	
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
+.weather-card h2 {
+	font-size: 70px;
+	margin: 5px;
+	color: #2b2b2d;
+}
+
+.weather-card-loc div:nth-child(2) h4{
+	font-size: 100px;
+	color: #2b2b2d;
+	margin: 5px;
+}
+
+.weather-card-loc div:nth-child(2) h3 {
+	font-size: 40px;
+	color: #2b2b2d;
+	margin: 5px;
+}
+
+/*.weather-text {
+	font-size: 30px !important;
+	
+}*/
+
+.weather-card-loc div:nth-child(2) h5 {
+	font-size: 25px;
+	color: #2b2b2d;
+	margin: 5px;
+}
+
+.weather-card-current p {
+	margin: 0 20px 5px 5px;
+	color: #2b2b2d;
+	font-size: 20px;
+}
+
+.weather-card-current h3 {
+	margin: 0px 20px 5px 5px;
+}
+
+.air-condition h3 {
+	margin: 15px 0;
+}
+
+.weather-list{
+	width: 90%;
+	margin: auto;
+	background-color: #eaeaed76;
+	border-radius: 20px;
+	color: #2b2b2d;
+	& p {
+		margin: 5px;
+	}
+
+	& h3 {
+		margin: 10px 0px 10px 0px;
+	}
+}
