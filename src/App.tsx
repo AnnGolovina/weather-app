@@ -3,15 +3,20 @@ import './App.css';
 import { SearchContextProvider } from './context/SearchContext';
 import { Weather } from './components/static/Weather';
 import { WeatherList } from './components/static/WeatherList';
-import { FlexRow } from './components/shared/Flex';
+import { Flex, FlexRow } from './components/shared/Flex';
 
 function App() {
   return (
-    <FlexRow width='80vw' height='85vh' borderRadius='15px' background='#04062c' margin='auto' padding='30px'>
+    <div>
+      <h1>Weater  forecast</h1>
+      
+    <Flex minWidth='600px' width='75vw' height='80%' borderRadius='15px' background='#ffffffaa' margin='auto' padding='10px' >
+      
       <SearchContextProvider> 
           <Weather />
       </SearchContextProvider>
-    </FlexRow>
+    </Flex>
+    </div>
   );
 }
 

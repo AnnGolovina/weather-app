@@ -23,14 +23,15 @@ export const Search: FC<PropsInterface> = () => {
   };
 
   return (
-    <FlexRow>
+    <FlexRow alignItems="center" justifyContent="center">
       <input
+        className="search-input"
         onChange={(e) => setValue(e.target.value)}
         value={value}
         placeholder="Search location..."
         type="text"
       />
-      <button onClick={() => onButtonClick()}>Search</button>
+      <button className="search-btn" onClick={() => onButtonClick()}>Search</button>
     </FlexRow>
   );
 };

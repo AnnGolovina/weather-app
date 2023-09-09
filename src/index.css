@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #404040;
+  background: url(/public/assets/river-surrounded-by-forests-under-a-cloudy-sky-in-thuringia-in-germany.jpg);
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
