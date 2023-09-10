@@ -14,13 +14,13 @@ export const Weather = () => {
 	<div>
 		<Search/>
 
-		<FlexRow width='75vw' minWidth='600px' justifyContent='space-around' alignItems='center' color='#2b2b2d'>
+		<FlexRow width='75vw' minWidth='600px' height='70vh' justifyContent='space-around' alignItems='center' color='#2b2b2d'>
 		
 		<FlexColumn width='40vw' minWidth='322px' height='55vh' margin='30px'  >			
 			<WeatherCard weather={weather}   />
 		</FlexColumn>
 		
-		<FlexColumn width='20vw' minWidth='160px' height='100%' margin='30px' alignItems='stretch' >
+		<FlexColumn width='20vw' minWidth='160px' margin='30px' alignItems='stretch' >
 			<WeatherList weather={weather} />
 		</FlexColumn>
 		

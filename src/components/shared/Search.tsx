@@ -22,11 +22,18 @@ export const Search: FC<PropsInterface> = () => {
     getData().then((data) => setWeather(data));
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onButtonClick();
+    }
+  };
+
   return (
     <FlexRow alignItems="center" justifyContent="center">
       <input
         className="search-input"
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => handleKeyPress(e)}
         value={value}
         placeholder="Search location..."
         type="text"

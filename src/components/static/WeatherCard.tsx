@@ -41,6 +41,9 @@ export const WeatherCard: FC<PropsInterface> = ({weather}) => {
     case "Light drizzle" && "Light rain shower":
       weatherIcon = <RiDrizzleFill/>;
       break;
+    case "Light rain":
+        weatherIcon = <RiDrizzleFill/>;
+      break;
     case "Moderate or heavy rain with thunder":
       weatherIcon = <BsFillCloudLightningRainFill/>;
       break;

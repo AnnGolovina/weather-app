@@ -50,6 +50,9 @@ const renderWeatherList = () => {
     case "Light drizzle" && "Light rain shower":
       weatherIcon = <RiDrizzleFill/>;
       break;
+    case "Light rain":
+        weatherIcon = <RiDrizzleFill/>;
+      break;
     case "Moderate or heavy rain with thunder":
       weatherIcon = <BsFillCloudLightningRainFill/>;
       break;
@@ -77,7 +80,7 @@ const renderWeatherList = () => {
 
        <FlexRow margin='0 15px 10px 15px' justifyContent='space-between'>
         <p><PiWindLight />{d.day.maxwind_kph} km/h</p>
-        <p>{weatherIcon}</p>        
+        <p style={{fontSize:"25px"}}>{weatherIcon}</p>        
        </FlexRow>
         
       </div>
