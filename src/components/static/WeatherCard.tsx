@@ -11,6 +11,7 @@ import {IoCloudySharp} from "react-icons/io5"
 import {RiDrizzleFill} from "react-icons/ri"
 import {BsFillCloudLightningRainFill} from "react-icons/bs"
 import { FlexColumn, FlexRow } from "../shared/Flex";
+import styled from 'styled-components';
 
 interface PropsInterface {
   weather: WeatherData | null,
@@ -18,11 +19,15 @@ interface PropsInterface {
 
 export const WeatherCard: FC<PropsInterface> = ({weather}) => {
 
+  if (!weather || !weather.location || !weather.location.name || !weather.forecast  || !weather.forecast.forecastday) {
+    return null;
+  }
+
   const options = useMemo(() => ({method:"GET"}), []);
 
   let weatherIcon;
 
-  switch (weather?.current.condition.text) {
+  switch (weather?.current?.condition?.text) {
     case "Sunny":
       weatherIcon = <IoMdSunny/>;
       break;
@@ -69,7 +74,7 @@ export const WeatherCard: FC<PropsInterface> = ({weather}) => {
 
       <FlexColumn alignItems="center" justifyContent="center"> 
         <h4>{weatherIcon}</h4>
-        <h3 className="weather-text">{weather.current.condition.text}</h3>
+        <h3 className="weather-text">{weather.current.condition?.text}</h3>
       </FlexColumn>      
          
     </div>

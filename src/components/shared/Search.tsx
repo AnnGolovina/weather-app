@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import { FlexRow } from "./Flex";
 import { SearchContext } from "../../context/SearchContext";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -11,6 +11,7 @@ interface PropsInterface {}
 
 export const Search: FC<PropsInterface> = () => {
   const { value, setValue, weather, setWeather } = useContext(SearchContext)!;
+  const [error, setError] = useState<string | null>(null);
   
   const getData = useFetchData(
     `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${value}&days=3`,
@@ -19,7 +20,14 @@ export const Search: FC<PropsInterface> = () => {
   ) as () => Promise<WeatherData>;
 
   const onButtonClick = () => {
-    getData().then((data) => setWeather(data));
+    getData().then((data) => {
+      setWeather(data); 
+      setValue("");
+      setError(null);
+    }).catch((error) => {
+      setError(error);
+      console.log("Error", error);      
+    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -30,15 +38,16 @@ export const Search: FC<PropsInterface> = () => {
 
   return (
     <FlexRow alignItems="center" justifyContent="center">
-      <input
-        className="search-input"
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={(e) => handleKeyPress(e)}
-        value={value}
-        placeholder="Search location..."
-        type="text"
-      />
-      <button className="search-btn" onClick={() => onButtonClick()}>Search</button>
-    </FlexRow>
+    <input
+      className="search-input"
+      onChange={(e) => setValue(e.target.value)}
+      onKeyDown={(e) => handleKeyPress(e)}
+      value={value}
+      placeholder="Search location..."
+      type="text"
+    />
+    <button className="search-btn" onClick={() => onButtonClick()}>Search</button>
+    {error && <div className="error-message">Error:{error}</div>}
+  </FlexRow>
   );
 };

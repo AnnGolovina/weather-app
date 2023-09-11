@@ -4,6 +4,7 @@ import { Search } from '../shared/Search';
 import { WeatherCard } from './WeatherCard';
 import { WeatherList } from './WeatherList';
 import { FlexColumn, FlexRow } from '../shared/Flex';
+import styled from 'styled-components';
 
 
 

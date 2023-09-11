@@ -19,6 +19,9 @@ interface PropsInterface {
 
 export const WeatherList: FC<PropsInterface> = ({weather}) => {
   
+  if (!weather || !weather.location || !weather.location.name || !weather.forecast  || !weather.forecast.forecastday) {
+    return null;
+  }
   
 const options = useMemo(() => ({method:"GET"}), []);
  

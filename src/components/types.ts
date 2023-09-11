@@ -34,7 +34,6 @@ export interface ForecastWeather {
 export interface WeatherDaysData {
 	astro: AstroData;
 	date: string;
-	//conditions: ConditionsData;
 	day: WeatherOnDay;
   }
   
